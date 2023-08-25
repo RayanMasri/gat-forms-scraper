@@ -1,0 +1,14 @@
+{
+	"name": "Forms scraper",
+	"description": "Scrape questions into gat challenge app",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"content_scripts": [
+		{
+			"run_at": "document_idle",
+			"js": ["content.js"],
+			"matches": ["https://docs.google.com/forms/*"]
+		}
+	],
+	"permissions": ["tabs"]
+}
