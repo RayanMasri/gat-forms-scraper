@@ -22,15 +22,18 @@ app.post('/', async (req, res) => {
 	let { skill } = req.body;
 
 	let path = skill == null ? paragraphsPath : skillsPath;
-
-	let file = JSON.parse(await readFile(path));
-	let ids = file
-		.map((model) => model.questions)
-		.flat()
-		.map((question) => question.id)
-		.sort((a, b) => b - a);
-
-	res.send({ id: ids[0] });
+	
+	try {
+		let file = JSON.parse(await readFile(path));
+		let ids = file
+			.map((model) => model.questions)
+			.flat()
+			.map((question) => question.id)
+			.sort((a, b) => b - a);
+	
+		res.send({ id: ids[0] + 1 });
+	} catch(e) {}
+	
 });
 
 app.listen(3000);
